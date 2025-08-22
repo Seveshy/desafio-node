@@ -1,0 +1,28 @@
+{
+  "name": "desafio-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4",
+    "fastify": "^5.5.0",
+    "mysql2": "^3.14.3"
+  },
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "ts-node src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "node": "^24.6.0",
+    "typescript": "^5.9.2"
+  }
+}
