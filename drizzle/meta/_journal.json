@@ -15,6 +15,13 @@
       "when": 1755890989651,
       "tag": "0001_light_doctor_doom",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1755960562590,
+      "tag": "0002_sudden_malcolm_colcord",
+      "breakpoints": true
     }
   ]
 }
