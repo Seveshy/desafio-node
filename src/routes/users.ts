@@ -11,6 +11,15 @@ export async function usersRoutes(fastify: FastifyInstance) {
       password: string;
     };
     try {
+      const [existing] = await db
+        .select()
+        .from(users)
+        .where(eq(users.email, email));
+
+      if (existing) {
+        return reply.status(400).send({ error: "Usuário já cadastrado" });
+      }
+
       await db.insert(users).values({ name, email, password });
       const [user] = await db
         .select()
@@ -22,11 +31,35 @@ export async function usersRoutes(fastify: FastifyInstance) {
     }
   });
 
+  fastify.put("/users/:id", async (request, reply) => {
+    const { id } = request.params as { id: number };
+    const { name } = request.body as { name: string };
+    try {
+      await db.update(users).set({ name }).where(eq(users.id, id));
+      const user = await db.select().from(users).where(eq(users.id, id));
+
+      reply.send({ user });
+    } catch (error) {
+      reply.status(500).send({ error: "Erro ao editar usuário" });
+    }
+  });
+
+  fastify.delete("/users/:id", async (request, reply) => {
+    const { id } = request.params as { id: number };
+    try {
+      const result = await db.delete(users).where(eq(users.id, id));
+      reply.send({ status: "Usuário deletado com sucesso!", result });
+    } catch (error) {
+      reply.status(500).send({ error: "Erro ao deletar usuário" });
+    }
+  });
+
   fastify.get("/users", async (request, reply) => {
     try {
-      reply.send({ status: "Servidor e banco funcionando!" });
+      const allUsers = await db.select().from(users);
+      reply.send({ users: allUsers });
     } catch (error) {
-      reply.status(500).send({ error: "Erro ao conectar ao banco de dados" });
+      reply.status(500).send({ error: "Erro ao buscar usuário" });
     }
   });
 }
