@@ -3,25 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/app.js",
+    "dev": "ts-node src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:push": "drizzle-kit push"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@fastify/ajv-compiler": "^4.0.2",
+    "@fastify/formbody": "^8.0.2",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "fastify": "^5.5.0",
-    "mysql2": "^3.14.3"
-  },
-  "scripts": {
-    "start": "tsc && node dist/app.js",
-    "dev": "ts-node src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mysql2": "^3.14.3",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
+    "drizzle-kit": "^0.31.4",
     "node": "^24.6.0",
     "typescript": "^5.9.2"
   }

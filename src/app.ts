@@ -1,15 +1,11 @@
 import Fastify from "fastify";
+import { usersRoutes } from "./routes/users";
 
-const fastify = Fastify();
-import { db } from "./db/connection";
+const fastify = Fastify({ logger: true });
 
-fastify.get("/users", async (request, reply) => {
-  try {
-    reply.send({ status: "Servidor e banco funcionando!" });
-  } catch (error) {
-    reply.status(500).send({ error: "Erro ao conectar ao banco de dados" });
-  }
-});
+fastify.register(usersRoutes);
+fastify.register(require("@fastify/formbody"));
+fastify.register(require("@fastify/ajv-compiler"));
 
 fastify
   .listen({ port: 3000 })
