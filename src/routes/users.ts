@@ -62,4 +62,17 @@ export async function usersRoutes(fastify: FastifyInstance) {
       reply.status(500).send({ error: "Erro ao buscar usuário" });
     }
   });
+
+  fastify.get("/users/:id", async (request, reply) => {
+    const { id } = request.params as { id: number };
+    try {
+      const returnUser = await db.select().from(users).where(eq(users.id, id));
+      if (returnUser.length === 0) {
+        return reply.status(404).send({ error: "Usuário não encontrado" });
+      }
+      reply.send({ users: returnUser });
+    } catch (error) {
+      reply.status(500).send({ error: "Erro ao buscar usuário" });
+    }
+  });
 }
