@@ -52,19 +52,30 @@ Este projeto é **exclusivamente para estudos** e serve como base para quem dese
 
 ---
 
-## Como rodar
+## Como gerar as migrations
 
-1. Instale as dependências:
+1. Gere as migrations com o Drizzle Kit:
    ```
-   npm install
+   npm run drizzle:generate
    ```
-2. Configure o banco de dados e variáveis de ambiente.
-3. Execute o projeto:
+2. Aplique as migrations no banco de dados:
    ```
-   npm run dev
+   npm run drizzle:push
    ```
-4. Explore as rotas e funcionalidades para praticar!
 
 ---
 
-**Bons estudos e boa prática de
+## Como iniciar o projeto
+
+1. Compile e inicie o servidor:
+   ```
+   npm start
+   ```
+2. Ou, para desenvolvimento com atualização automática:
+   ```
+   npm run dev
+   ```
+
+---
+
+\*\*Bons estudos e boa prática de
